@@ -36,96 +36,58 @@ function Home() {
   const [selectedLanguage, setSelectedLanguage] = useState(
     localStorage.getItem("language") || "fr"
   );
+  const [notificationMessages, setNotificationMessages] = useState(null);
   const toastRef = useRef(null);
-  const selectedLanguageRef = useRef(selectedLanguage);
 
+  // Charger les traductions pour les notifications
   useEffect(() => {
-    selectedLanguageRef.current = selectedLanguage;
-    console.log("Référence mise à jour : ", selectedLanguageRef.current);
+    fetch("/translations/translations.json")
+      .then((res) => {
+        console.log("Réponse brute :", res);
+        if (!res.ok) {
+          throw new Error(`Erreur HTTP ! Statut : ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log("Données JSON chargées :", data);
+        if (data[selectedLanguage]?.contact?.notifications) {
+          setNotificationMessages(data[selectedLanguage].contact.notifications);
+        } else {
+          console.error(
+            `Pas de notifications disponibles pour la langue : ${selectedLanguage}`
+          );
+          setNotificationMessages(null);
+        }
+      })
+      .catch((err) => {
+        console.error("Erreur lors du chargement des traductions :", err);
+      });
   }, [selectedLanguage]);
 
-  useEffect(() => {
-    const keys = Object.keys(messages.en);
-    const missingKeys = keys.filter(
-      (key) => !messages[selectedLanguage]?.[key]
-    );
-    if (missingKeys.length > 0) {
-      console.warn(
-        `Clés manquantes pour la langue ${selectedLanguage}:`,
-        missingKeys
-      );
-    }
-  }, [selectedLanguage]);
-
-  const messages = {
-    en: {
-      waiting: { title: "Waiting...", content: "The message is being sent." },
-      success: {
-        title: "Sent!",
-        content: "Your message has been sent successfully.",
-      },
-      error: {
-        title: "Error!",
-        content: "An error occurred while sending the message.",
-      },
-    },
-    es: {
-      waiting: {
-        title: "Espera...",
-        content: "El mensaje está siendo enviado.",
-      },
-      success: {
-        title: "¡Enviado!",
-        content: "Su mensaje ha sido enviado exitosamente.",
-      },
-      error: {
-        title: "¡Error!",
-        content: "Se produjo un error al enviar el mensaje.",
-      },
-    },
-    fr: {
-      waiting: {
-        title: "Attente...",
-        content: "Le message est en cours d'envoi.",
-      },
-      success: {
-        title: "Envoyé !",
-        content: "Votre message a été envoyé avec succès.",
-      },
-      error: {
-        title: "Erreur !",
-        content: "Une erreur est survenue lors de l'envoi du message.",
-      },
-    },
-  };
-
+  // Gestion du changement de langue
   const handleLanguageChange = (lang) => {
     setSelectedLanguage(lang);
     localStorage.setItem("language", lang);
-    console.log("Langue changée globalement à :", lang);
   };
 
+  // Gestion de l'envoi du formulaire
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(
-      "Langue active au moment de l'envoi :",
-      selectedLanguageRef.current
-    );
 
-    const currentLanguage = selectedLanguageRef.current;
-    console.log("Langue active au moment de l'envoi :", currentLanguage);
+    console.log("Messages de notification :", notificationMessages);
 
-    const currentMessages = messages[currentLanguage];
-    if (!currentMessages) {
-      console.error(
-        `Messages introuvables pour la langue : ${currentLanguage}`
-      );
+    if (
+      !notificationMessages ||
+      Object.keys(notificationMessages).length === 0
+    ) {
+      console.error("Messages de notification introuvables ou incomplets !");
       return;
     }
 
     toastRef.current.show({
-      title: currentMessages.waiting.title,
-      content: currentMessages.waiting.content,
+      title: notificationMessages.waiting.title,
+      content: notificationMessages.waiting.content,
       cssClass: "e-toast-warning",
       icon: "e-warning toast-icons",
     });
@@ -139,8 +101,8 @@ function Home() {
 
       if (response.ok) {
         toastRef.current.show({
-          title: currentMessages.success.title,
-          content: currentMessages.success.content,
+          title: notificationMessages.success.title,
+          content: notificationMessages.success.content,
           cssClass: "e-toast-success",
           icon: "e-success toast-icons",
         });
@@ -152,8 +114,8 @@ function Home() {
       }
     } catch (error) {
       toastRef.current.show({
-        title: currentMessages.error.title,
-        content: currentMessages.error.content,
+        title: notificationMessages.error.title,
+        content: notificationMessages.error.content,
         cssClass: "e-toast-danger",
         icon: "e-error toast-icons",
       });
@@ -596,11 +558,7 @@ function Home() {
         </div>
       </section>
       {/* Notifications */}
-      <Notifications
-        key={selectedLanguage}
-        ref={toastRef}
-        messages={messages[selectedLanguage]} // Passe uniquement les messages traduits
-      />
+      <Notifications ref={toastRef} />
 
       {/* Section Contact */}
       <section
