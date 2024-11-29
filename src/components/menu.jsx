@@ -49,7 +49,7 @@ const Menu = ({ changeLanguage }) => {
     console.log("Langue changée dans Menu.jsx :", lang);
     applyTranslations(lang, translations);
     setLanguageMenuOpen(false);
-    changeLanguage(lang); // Appelle la fonction transmise depuis le parent
+    changeLanguage(lang);
   };
 
   useEffect(() => {
@@ -138,11 +138,6 @@ const Menu = ({ changeLanguage }) => {
             </a>
           </li>
           <li>
-            <a href="#cv" onClick={(e) => handleScroll(e, "#cv")}>
-              CV
-            </a>
-          </li>
-          <li>
             <a href="#contact" onClick={(e) => handleScroll(e, "#contact")}>
               Contact
             </a>
@@ -205,15 +200,6 @@ const Menu = ({ changeLanguage }) => {
             onClick={(e) => handleScroll(e, "#education")}
           >
             Éducation
-          </a>
-        </li>
-        <li>
-          <a
-            href="#cv"
-            data-key="nav.resume"
-            onClick={(e) => handleScroll(e, "#cv")}
-          >
-            CV
           </a>
         </li>
         <li>

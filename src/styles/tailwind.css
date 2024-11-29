@@ -141,10 +141,6 @@ nav ul li a:hover::after {
 }
 
 /* Grid Styles */
-.about-me,
-.my-projects {
-  @apply font-bold text-[2em] border-b-[color:var(--color-shadow)] mb-10 border-b-2 border-solid;
-}
 
 .projects-grid {
   @apply flex flex-wrap justify-center gap-5 w-full box-border mt-10 p-0;
@@ -262,7 +258,7 @@ nav ul li a:hover::after {
 }
 #cv a {
   @apply inline-block bg-[color:var(--color-dark)] text-[white] no-underline px-5 py-2.5 rounded-[5px] hover:bg-[color:var(--color-primary)];
-  border: 2px solid white; /* Ajoute une bordure blanche de 2px */
+  border: 2px solid white;
 }
 
 /* Section Contact */

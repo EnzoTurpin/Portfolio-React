@@ -171,20 +171,20 @@ function Home() {
         </div>
       </header>
       {/* Section À propos */}
-      <section id="about about-me">
+      <section id="about">
         <h2 className="translate" data-key="about.title">
           À propos de moi
         </h2>
         <p className="translate" data-key="about.content">
           Étudiant en 2e année d'informatique à Ynov Campus, spécialisé en
-          développement web <strong>(React, PHP, Golang, Python)</strong> et
-          bases de données <strong>MySQL</strong>. Je recherche un stage pour
-          mettre en pratique mes compétences. Curieux et motivé, je suis prêt à
-          m'investir pleinement dans une équipe dynamique.
+          développement web (React, PHP, Golang, Python) et bases de données
+          MySQL. Je recherche un stage pour mettre en pratique mes compétences.
+          Curieux et motivé, je suis prêt à m'investir pleinement dans une
+          équipe dynamique.
         </p>
       </section>
       {/* Section Projets */}
-      <section id="projects my-projects" className="parallax-section">
+      <section id="projects" className="parallax-section">
         <h2 className="translate" data-key="projects.title">
           Projets
         </h2>
