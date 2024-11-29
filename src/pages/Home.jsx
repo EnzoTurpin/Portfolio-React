@@ -34,64 +34,115 @@ function Home() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState(
-    () => localStorage.getItem("language") || "fr"
-  ); // Utilisation de localStorage pour charger la langue initiale
-  const [translations, setTranslations] = useState({});
+    localStorage.getItem("language") || "fr"
+  );
   const toastRef = useRef(null);
+  const selectedLanguageRef = useRef(selectedLanguage);
 
-  // Charger les traductions lors du chargement initial
   useEffect(() => {
-    fetch("/translations/translations.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setTranslations(data);
-      })
-      .catch((err) =>
-        console.error("Erreur lors du chargement des traductions :", err)
-      );
-  }, []);
+    selectedLanguageRef.current = selectedLanguage;
+    console.log("Référence mise à jour : ", selectedLanguageRef.current);
+  }, [selectedLanguage]);
 
-  // Fonction pour changer la langue
-  const changeLanguage = (lang) => {
-    setSelectedLanguage(lang);
-    localStorage.setItem("language", lang);
+  useEffect(() => {
+    const keys = Object.keys(messages.en);
+    const missingKeys = keys.filter(
+      (key) => !messages[selectedLanguage]?.[key]
+    );
+    if (missingKeys.length > 0) {
+      console.warn(
+        `Clés manquantes pour la langue ${selectedLanguage}:`,
+        missingKeys
+      );
+    }
+  }, [selectedLanguage]);
+
+  const messages = {
+    en: {
+      waiting: { title: "Waiting...", content: "The message is being sent." },
+      success: {
+        title: "Sent!",
+        content: "Your message has been sent successfully.",
+      },
+      error: {
+        title: "Error!",
+        content: "An error occurred while sending the message.",
+      },
+    },
+    es: {
+      waiting: {
+        title: "Espera...",
+        content: "El mensaje está siendo enviado.",
+      },
+      success: {
+        title: "¡Enviado!",
+        content: "Su mensaje ha sido enviado exitosamente.",
+      },
+      error: {
+        title: "¡Error!",
+        content: "Se produjo un error al enviar el mensaje.",
+      },
+    },
+    fr: {
+      waiting: {
+        title: "Attente...",
+        content: "Le message est en cours d'envoi.",
+      },
+      success: {
+        title: "Envoyé !",
+        content: "Votre message a été envoyé avec succès.",
+      },
+      error: {
+        title: "Erreur !",
+        content: "Une erreur est survenue lors de l'envoi du message.",
+      },
+    },
   };
 
-  // Fonction de soumission du formulaire
+  const handleLanguageChange = (lang) => {
+    setSelectedLanguage(lang);
+    localStorage.setItem("language", lang);
+    console.log("Langue changée globalement à :", lang);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(
+      "Langue active au moment de l'envoi :",
+      selectedLanguageRef.current
+    );
 
-    // Notification d'attente
+    const currentLanguage = selectedLanguageRef.current;
+    console.log("Langue active au moment de l'envoi :", currentLanguage);
+
+    const currentMessages = messages[currentLanguage];
+    if (!currentMessages) {
+      console.error(
+        `Messages introuvables pour la langue : ${currentLanguage}`
+      );
+      return;
+    }
+
     toastRef.current.show({
-      title: "contact.notifications.waiting.title",
-      content: "contact.notifications.waiting.content",
+      title: currentMessages.waiting.title,
+      content: currentMessages.waiting.content,
       cssClass: "e-toast-warning",
       icon: "e-warning toast-icons",
-      language: selectedLanguage, // Passez la langue actuelle
-      translations, // Passez les traductions actuelles
     });
 
     try {
       const response = await fetch("http://localhost:5000/send-email", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          message,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
       });
 
       if (response.ok) {
         toastRef.current.show({
-          title: "contact.notifications.success.title",
-          content: "contact.notifications.success.content",
+          title: currentMessages.success.title,
+          content: currentMessages.success.content,
           cssClass: "e-toast-success",
           icon: "e-success toast-icons",
-          language: selectedLanguage, // Passez la langue actuelle
-          translations, // Passez les traductions actuelles
         });
         setName("");
         setEmail("");
@@ -100,14 +151,11 @@ function Home() {
         throw new Error("Erreur lors de l'envoi du message");
       }
     } catch (error) {
-      console.error("Erreur :", error);
       toastRef.current.show({
-        title: "contact.notifications.error.title",
-        content: "contact.notifications.error.content",
+        title: currentMessages.error.title,
+        content: currentMessages.error.content,
         cssClass: "e-toast-danger",
         icon: "e-error toast-icons",
-        language: selectedLanguage, // Passez la langue actuelle
-        translations, // Passez les traductions actuelles
       });
     }
   };
@@ -133,7 +181,7 @@ function Home() {
       </Helmet>
       {/* En-tête */}
       <header className="parallax-header">
-        <Menu changeLanguage={changeLanguage} />
+        <Menu changeLanguage={handleLanguageChange} />
 
         <div className="header-content">
           <div className="header-info">
@@ -547,16 +595,14 @@ function Home() {
           </div>
         </div>
       </section>
-
       {/* Notifications */}
       <Notifications
+        key={selectedLanguage}
         ref={toastRef}
-        language={selectedLanguage}
-        translations={translations}
+        messages={messages[selectedLanguage]} // Passe uniquement les messages traduits
       />
 
       {/* Section Contact */}
-
       <section
         id="contact"
         className="flex flex-col items-center py-[60px] px-5"
@@ -694,7 +740,6 @@ function Home() {
           </div>
         </div>
       </section>
-
       <ScrollToTopButton />
     </>
   );

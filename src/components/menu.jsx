@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-const Menu = () => {
+const Menu = ({ changeLanguage }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const [translations, setTranslations] = useState({});
   const [selectedLanguage, setSelectedLanguage] = useState("fr");
-
-  // Charger les traductions au chargement du composant
 
   useEffect(() => {
     fetch("/translations/translations.json")
@@ -19,27 +17,23 @@ const Menu = () => {
       });
   }, []);
 
-  // Fonction pour appliquer les traductions à toute la page
   const applyTranslations = (lang, translationsData) => {
     document.querySelectorAll("[data-key]").forEach((element) => {
       const key = element.getAttribute("data-key");
       const translation = getNestedTranslation(translationsData, lang, key);
 
       if (translation) {
-        // Gestion des éléments spécifiques (placeholder, etc.)
         if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
           if (element.hasAttribute("placeholder")) {
             element.placeholder = translation;
           }
         } else {
-          // Traduction du contenu texte pour les autres éléments
           element.textContent = translation;
         }
       }
     });
   };
 
-  // Fonction pour récupérer les traductions imbriquées
   const getNestedTranslation = (translations, lang, key) => {
     return key
       .split(".")
@@ -49,20 +43,25 @@ const Menu = () => {
       );
   };
 
-  // Changer la langue et appliquer les traductions
   const setLanguage = (lang) => {
     localStorage.setItem("language", lang);
     setSelectedLanguage(lang);
+    console.log("Langue changée dans Menu.jsx :", lang);
     applyTranslations(lang, translations);
     setLanguageMenuOpen(false);
+    changeLanguage(lang); // Appelle la fonction transmise depuis le parent
   };
 
-  // Fonction pour basculer l'état du sélecteur de langue
+  useEffect(() => {
+    if (translations && selectedLanguage) {
+      applyTranslations(selectedLanguage, translations);
+    }
+  }, [translations, selectedLanguage]);
+
   const toggleLanguageMenu = () => {
     setLanguageMenuOpen(!languageMenuOpen);
   };
 
-  // Fonction pour afficher la liste des langues disponibles
   const renderLanguageList = () => {
     const languages = {
       fr: { code: "FR", flag: "/svg/flag_fr.svg" },
@@ -73,7 +72,7 @@ const Menu = () => {
     return (
       <ul>
         {Object.entries(languages)
-          .filter(([lang]) => lang !== selectedLanguage) // Exclure la langue sélectionnée
+          .filter(([lang]) => lang !== selectedLanguage)
           .map(([lang, { code, flag }]) => (
             <li key={lang} onClick={() => setLanguage(lang)}>
               <img src={flag} alt={`${code} Flag`} className="w-6 h-4 mr-2" />
@@ -84,19 +83,17 @@ const Menu = () => {
     );
   };
 
-  // Fonction pour gérer le scroll smooth
   const handleScroll = (e, sectionId) => {
     e.preventDefault();
     const section = document.querySelector(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     }
-    setMenuOpen(false); // Fermer le menu après le scroll
+    setMenuOpen(false);
   };
 
   return (
     <nav className="w-full flex items-center justify-between">
-      {/* Sélecteur de langue à gauche */}
       <div
         className="absolute left-0 top-5 flex items-center z-50"
         style={{ marginLeft: "20px" }}
@@ -114,7 +111,6 @@ const Menu = () => {
         </ul>
       </div>
 
-      {/* Menu mobile */}
       <div
         className={`fixed top-0 right-0 h-screen bg-[rgba(0,0,0,0.9)] text-white flex flex-col items-center justify-center w-[60vw] transform ${
           menuOpen ? "translate-x-0" : "translate-x-full"
@@ -154,7 +150,6 @@ const Menu = () => {
         </ul>
       </div>
 
-      {/* Bouton menu hamburger */}
       <button
         className="absolute right-5 top-5 md:hidden z-50"
         onClick={() => setMenuOpen(!menuOpen)}
@@ -175,7 +170,6 @@ const Menu = () => {
         />
       </button>
 
-      {/* Menu desktop */}
       <ul className="absolute right-0 top-5 flex items-center z-50">
         <li>
           <a
