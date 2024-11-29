@@ -1,0 +1,386 @@
+{
+  "fr": {
+    "nav": {
+      "title": "Mon Portfolio",
+      "about": "À propos",
+      "projects": "Projets",
+      "skills": "Compétences",
+      "education": "Éducation",
+      "resume": "CV",
+      "contact": "Contact"
+    },
+    "header": {
+      "name": "Enzo Turpin",
+      "role": "Développeur web Full Stack Junior",
+      "description1": "Étudiant en 2ème année de Bachelor Informatique",
+      "description2": "À la recherche d'un stage dans le développement web"
+    },
+    "about": {
+      "title": "À propos de moi",
+      "content": "Étudiant en 2e année d'informatique à Ynov Campus, spécialisé endéveloppement web <strong>(React, PHP, Golang, Python)</strong> et bases de données <strong>MySQL</strong>. Je recherche un stage pour mettre en pratique mes compétences. Curieux et motivé, je suis prêt à m'investir pleinement dans une équipe dynamique."
+    },
+    "projects": {
+      "title": "Projets",
+      "project1": {
+        "title": "EasterQuiz",
+        "description": "Quiz amusant sur les traditions de Pâques à travers le monde."
+      },
+      "project2": {
+        "title": "Forum",
+        "description": "Une plateforme de discussion pour les passionnés de jeux vidéo."
+      },
+      "project3": {
+        "title": "GroupieTracker",
+        "description": "Une application pour suivre les tournées de vos artistes préférés."
+      },
+      "buttons": {
+        "github": "Voir sur GitHub",
+        "view": "Voir le Projet"
+      }
+    },
+    "skills": {
+      "frameworks": "Frameworks",
+      "backend": "Back-end",
+      "databases": "Bases de données",
+      "react": {
+        "name": "React",
+        "description": "Création d'interfaces utilisateur dynamiques et modulaires avec React."
+      },
+      "tailwind": {
+        "name": "Tailwind CSS",
+        "description": "Conception rapide et flexible d'interfaces avec des classes utilitaires Tailwind CSS."
+      },
+      "php": {
+        "name": "PHP",
+        "description": "Développement d'applications web dynamiques avec PHP."
+      },
+      "golang": {
+        "name": "Golang",
+        "description": "Conception de services backend performants et intégration d'API avec Golang."
+      },
+      "python": {
+        "name": "Python",
+        "description": "Automatisation, data science et back-end avec Python."
+      },
+      "java": {
+        "name": "Java",
+        "description": "Développement d'applications, systèmes distribués et back-end avec Java."
+      },
+      "mysql": {
+        "name": "MySQL",
+        "description": "Gestion de bases de données relationnelles avec MySQL."
+      }
+    },
+    "education": {
+      "title": "Éducation",
+      "ynov": {
+        "school": "Ynov Campus",
+        "degree": "Bachelor - Informatique",
+        "dates": "2023 - 2027"
+      },
+      "mediaschool": {
+        "school": "MediaSchool - SupDeWeb",
+        "degree": "Bachelor - Développement Web",
+        "dates": "2022 - 2023"
+      },
+      "epitech": {
+        "school": "Epitech",
+        "degree": "Expert en Technologies Informatiques",
+        "dates": "2022 - 2022"
+      },
+      "lycee": {
+        "school": "Lycée Louis Guilloux",
+        "degree": "Baccalauréat Professionnel Commerce",
+        "dates": "2019 - 2022"
+      }
+    },
+    "resume": {
+      "resume": "Mon CV",
+      "download": "Télécharger mon CV"
+    },
+    "contact": {
+      "title": "Contactez-moi",
+      "form": {
+        "name": "Nom Prénom:",
+        "email": "Email:",
+        "message": "Message:",
+        "submit": "Envoyer",
+        "namePlaceholder": "Nom et Prénom (facultatif)",
+        "emailPlaceholder": "Entrez votre email",
+        "messagePlaceholder": "Votre message"
+      },
+      "notifications": {
+        "waiting": {
+          "title": "Attente...",
+          "content": "Le message est en cours d'envoi."
+        },
+        "success": {
+          "title": "Envoyé !",
+          "content": "Votre message a été envoyé avec succès."
+        },
+        "error": {
+          "title": "Erreur !",
+          "content": "Une erreur est survenue lors de l'envoi du message."
+        }
+      },
+      "social": {
+        "linkedin": "LinkedIn",
+        "github": "GitHub"
+      }
+    }
+  },
+  "en": {
+    "nav": {
+      "title": "Portfolio of Enzo Turpin - Junior Full Stack Web Developer",
+      "about": "About",
+      "projects": "Projects",
+      "skills": "Skills",
+      "education": "Education",
+      "resume": "Resume",
+      "contact": "Contact"
+    },
+    "header": {
+      "name": "Enzo Turpin",
+      "role": "Full Stack Junior Web Developer",
+      "description1": "Second-year Bachelor student in Computer Science",
+      "description2": "Looking for an internship in web development"
+    },
+    "about": {
+      "title": "About Me",
+      "content": "2nd year computer science student at Ynov Campus, specializing in web development <strong>(React, PHP, Golang, Python)</strong> and <strong>MySQL</strong> databases. I am looking for an internship to practice my skills. Curious and motivated, I am ready to fully invest in a dynamic team."
+    },
+    "projects": {
+      "title": "Projects",
+      "project1": {
+        "description": "Fun quiz about Easter traditions around the world."
+      },
+      "project2": {
+        "description": "A discussion platform for video game enthusiasts."
+      },
+      "project3": {
+        "description": "An app to track your favorite artists' tours."
+      },
+      "buttons": {
+        "github": "View on GitHub",
+        "view": "View Project"
+      }
+    },
+    "skills": {
+      "frameworks": "Frameworks",
+      "backend": "Back-end",
+      "databases": "Databases",
+      "react": {
+        "name": "React",
+        "description": "Creating dynamic and modular user interfaces with React."
+      },
+      "tailwind": {
+        "name": "Tailwind CSS",
+        "description": "Fast and flexible interface design with Tailwind CSS utility classes."
+      },
+      "php": {
+        "name": "PHP",
+        "description": "Developing dynamic web applications with PHP."
+      },
+      "golang": {
+        "name": "Golang",
+        "description": "Design of high-performance backend services and API integration with Golang."
+      },
+      "python": {
+        "name": "Python",
+        "description": "Automation, data science, and backend with Python."
+      },
+      "java": {
+        "name": "Java",
+        "description": "Development of applications, distributed systems and back-end with Java."
+      },
+      "mysql": {
+        "name": "MySQL",
+        "description": "Managing relational databases with MySQL."
+      }
+    },
+    "education": {
+      "title": "Education",
+      "ynov": {
+        "school": "Ynov Campus",
+        "degree": "Bachelor - Computer Science",
+        "dates": "2023 - 2027"
+      },
+      "mediaschool": {
+        "school": "MediaSchool - SupDeWeb",
+        "degree": "Bachelor - Web Development",
+        "dates": "2022 - 2023"
+      },
+      "epitech": {
+        "school": "Epitech",
+        "degree": "Expert in IT Technologies",
+        "dates": "2022 - 2022"
+      },
+      "lycee": {
+        "school": "Lycée Louis Guilloux",
+        "degree": "Professional Baccalaureate in Commerce",
+        "dates": "2019 - 2022"
+      }
+    },
+    "resume": {
+      "resume": "My resume",
+      "download": "Download my resume"
+    },
+    "contact": {
+      "title": "Contact Me",
+      "form": {
+        "name": "Full Name :",
+        "email": "Email:",
+        "message": "Message:",
+        "submit": "Send",
+        "namePlaceholder": "Full Name (optional)",
+        "emailPlaceholder": "Enter your email",
+        "messagePlaceholder": "Your message"
+      },
+      "notifications": {
+        "waiting": {
+          "title": "Waiting...",
+          "content": "The message is being sent."
+        },
+        "success": {
+          "title": "Sent!",
+          "content": "Your message has been sent successfully."
+        },
+        "error": {
+          "title": "Error!",
+          "content": "An error occurred while sending the message."
+        }
+      },
+      "social": {
+        "linkedin": "LinkedIn",
+        "github": "GitHub"
+      }
+    }
+  },
+  "es": {
+    "nav": {
+      "title": "Portafolio de Enzo Turpin - Desarrollador web junior full stack",
+      "about": "Sobre mí",
+      "projects": "Proyectos",
+      "skills": "Habilidades",
+      "education": "Educación",
+      "resume": "Reanudar",
+      "contact": "Contacto"
+    },
+    "header": {
+      "name": "Enzo Turpin",
+      "role": "Desarrollador web Full Stack Junior",
+      "description1": "Estudiante de segundo año de licenciatura en informática",
+      "description2": "Buscando una pasantía en desarrollo web"
+    },
+    "about": {
+      "title": "Sobre mí",
+      "content": "Estudiante de 2º de informática en Ynov Campus, especializado en desarrollo web (React, PHP, Golang, Python) y bases de datos MySQL. Estoy buscando una pasantía para practicar mis habilidades. Curioso y motivado, estoy dispuesto a invertir plenamente en un equipo dinámico."
+    },
+    "projects": {
+      "title": "Proyectos",
+      "project1": {
+        "description": "Quiz divertido sobre las tradiciones de Pascua en el mundo."
+      },
+      "project2": {
+        "description": "Una plataforma de discusión para entusiastas de los videojuegos."
+      },
+      "project3": {
+        "description": "Una aplicación para seguir las giras de tus artistas favoritos."
+      },
+      "buttons": {
+        "github": "Ver en GitHub",
+        "view": "Ver Proyecto"
+      }
+    },
+    "skills": {
+      "frameworks": "Frameworks",
+      "backend": "Back-end",
+      "databases": "Bases de datos",
+      "react": {
+        "name": "React",
+        "description": "Creando interfaces de usuario dinámicas y modulares con React."
+      },
+      "tailwind": {
+        "name": "Tailwind CSS",
+        "description": "Diseño de interfaz rápido y flexible con clases de utilidad Tailwind CSS."
+      },
+      "php": {
+        "name": "PHP",
+        "description": "Desarrollo de aplicaciones web dinámicas con PHP."
+      },
+      "golang": {
+        "name": "Golang",
+        "description": "Diseño de servicios backend de alto rendimiento e integración de API con Golang."
+      },
+      "python": {
+        "name": "Python",
+        "description": "Automatización, ciencia de datos y backend con Python."
+      },
+      "java": {
+        "name": "Java",
+        "description": "Desarrollo de aplicaciones, sistemas distribuidos y back-end con Java."
+      },
+      "mysql": {
+        "name": "MySQL",
+        "description": "Gestión de bases de datos relacionales con MySQL."
+      }
+    },
+    "education": {
+      "title": "Educación",
+      "ynov": {
+        "school": "Ynov Campus",
+        "degree": "Licenciatura - Informática",
+        "dates": "2023 - 2027"
+      },
+      "mediaschool": {
+        "school": "MediaSchool - SupDeWeb",
+        "degree": "Licenciatura - Desarrollo Web",
+        "dates": "2022 - 2023"
+      },
+      "epitech": {
+        "school": "Epitech",
+        "degree": "Experto en Tecnologías TI",
+        "dates": "2022 - 2022"
+      },
+      "lycee": {
+        "school": "Lycée Louis Guilloux",
+        "degree": "Bachillerato Profesional en Comercio",
+        "dates": "2019 - 2022"
+      }
+    },
+    "resume": {
+      "resume": "Mi reanudar",
+      "download": "Descarga mi reanudar"
+    },
+    "contact": {
+      "title": "Contáctame",
+      "form": {
+        "name": "Apellido Nombre:",
+        "email": "Correo electrónico:",
+        "message": "Mensaje:",
+        "submit": "Enviar",
+        "namePlaceholder": "Nombre completo (opcional)",
+        "emailPlaceholder": "Ingresa tu correo electrónico",
+        "messagePlaceholder": "Tu mensaje"
+      },
+      "notifications": {
+        "waiting": {
+          "title": "Espera...",
+          "content": "El mensaje está siendo enviado."
+        },
+        "success": {
+          "title": "¡Enviado!",
+          "content": "Su mensaje ha sido enviado exitosamente."
+        },
+        "error": {
+          "title": "¡Error!",
+          "content": "Se produjo un error al enviar el mensaje."
+        }
+      },
+      "social": {
+        "linkedin": "LinkedIn",
+        "github": "GitHub"
+      }
+    }
+  }
+}

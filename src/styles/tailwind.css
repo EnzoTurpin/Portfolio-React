@@ -1,0 +1,318 @@
+/*
+  Based on TailwindCSS recommendations,
+  consider using classes instead of the @apply directive
+  @see https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
+*/
+:root {
+  --color-dark: #333;
+  --color-light: #fff;
+  --color-gray-light: #f0f0f0;
+  --color-gray-lighter: #b0b0b0;
+  --color-gray: #ddd;
+  --color-gray-dark: #666;
+  --color-background-light: #f8f8f8;
+  --color-background-gray: #f4f4f4;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-shadow-dark: rgba(0, 0, 0, 0.3);
+  --color-primary: #555;
+}
+* {
+  @apply box-border p-0;
+}
+
+/* Global Styles */
+body {
+  @apply font-sans leading-[1.6] box-border text-[color:var(--color-dark)] m-0 p-0;
+  background: linear-gradient(to bottom, #ffffff, #333);
+}
+
+/* Header Styles */
+.parallax-header {
+  @apply bg-[url("../../background.jpg")]  bg-fixed bg-center bg-no-repeat bg-cover text-[color:var(--color-light)] relative flex flex-col justify-center items-center  h-auto min-h-screen;
+}
+nav {
+  @apply absolute right-5 top-1; /* Remonte la navbar plus haut */
+}
+nav ul {
+  @apply list-none m-0 p-0;
+}
+nav ul li {
+  margin: 0 15px;
+}
+nav ul li a {
+  @apply font-bold text-[color:var(--color-light)] no-underline relative;
+}
+
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #f0f0f0;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+nav ul li a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Menu toggle */
+.no-scroll {
+  @apply overflow-hidden;
+}
+.menu-toggle {
+  @apply absolute w-[30px] h-[30px] hidden cursor-pointer z-[1001] right-5 top-5;
+}
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  @apply content-[""] block bg-[color:var(--color-light)] h-[3px] w-full transition-all duration-[0.3s] ease-[ease-in-out] absolute rounded-[3px];
+}
+.hamburger::before,
+.hamburger::after {
+  @apply absolute;
+}
+.hamburger::before {
+  @apply -top-2.5;
+}
+.hamburger::after {
+  @apply top-2.5;
+}
+.menu-toggle.active .hamburger {
+  @apply rotate-45 before:rotate-90 before:top-0 after:rotate-90 after:top-0;
+}
+
+/* Language Selector */
+.custom-language-selector {
+  @apply absolute left-0 top-1 z-[1000]; /* Remonte le menu plus haut */
+}
+#selectedLanguage {
+  @apply flex items-center cursor-pointer px-2.5 py-[5px] rounded-[5px];
+}
+
+#selectedLanguage img {
+  @apply w-5 h-auto mr-2.5; /* Taille de l'image du drapeau */
+}
+
+#languageList {
+  @apply text-light list-none m-0 p-0 rounded-md absolute top-full left-0 w-full hidden;
+}
+
+#languageList.visible {
+  @apply block; /* Affiche la liste des langues */
+}
+
+#languageList li {
+  @apply py-2 flex items-center cursor-pointer;
+}
+#languageList li img {
+  @apply w-5 h-auto mr-2.5;
+}
+
+/* Header Content */
+.header-content {
+  @apply flex items-center text-left max-w-[1000px] w-4/5 mx-auto my-0;
+}
+.header-info {
+  @apply flex items-center;
+}
+.profile-img {
+  @apply w-[120px] h-[120px] border-[color:var(--color-light)] bg-[color:var(--color-dark)] mr-5 rounded-[50%] border-[3px] border-solid;
+}
+.text-info {
+  @apply max-w-[600px];
+}
+.text-info h1 {
+  @apply font-bold text-[2em] m-0;
+}
+.text-info h2 {
+  @apply font-bold text-[3em] m-0;
+}
+.text-info p {
+  @apply text-[1.5em] text-[color:var(--color-gray)] mx-0 my-[5px];
+}
+
+/* Parallax Section Styles */
+.parallax-section {
+  @apply bg-fixed bg-center bg-no-repeat bg-cover  text-center min-h-[50vh] px-5 py-20;
+}
+
+/* Grid Styles */
+.about-me,
+.my-projects {
+  @apply font-bold text-[2em] border-b-[color:var(--color-shadow)] mb-10 border-b-2 border-solid;
+}
+
+.projects-grid {
+  @apply flex flex-wrap justify-center gap-5 w-full box-border mt-10 p-0;
+}
+.project {
+  @apply flex-[1_1_calc(33.333%_-_40px)] max-w-[calc(33.333%_-_40px)] relative overflow-hidden bg-[color:var(--color-light)] shadow-[0_4px_6px_var(--color-shadow)] transition-transform duration-[0.3s] ease-[ease] flex flex-col justify-between mb-5 rounded-[10px] hover:-translate-y-2.5;
+}
+.project img {
+  @apply w-full h-auto object-cover rounded-t-[10px];
+}
+.project-info {
+  @apply text-left grow flex flex-col justify-between p-5;
+}
+.project-title {
+  @apply text-[1.5em] text-[color:var(--color-dark)] mt-0 mb-2.5 mx-0;
+}
+.project-description {
+  @apply text-[1em] text-[color:var(--color-gray-dark)] mb-[15px];
+}
+.github-button,
+.view-button {
+  @apply inline-block bg-[color:var(--color-dark)] text-[color:var(--color-light)] no-underline text-[1em] transition-[background-color] duration-[0.3s] ease-[ease] mr-2.5 mt-auto px-5 py-2.5 rounded-[5px];
+}
+.github-button:hover,
+.view-button:hover {
+  @apply bg-[color:var(--color-primary)];
+}
+.technologies-used {
+  @apply flex gap-[5px] mt-[5px];
+}
+.technologies-used img,
+.technologies-used svg {
+  @apply w-6 h-6 align-middle;
+
+  /* Assure l'alignement vertical des SVG inline et des fichiers SVG */
+}
+.svg-container {
+  @apply relative inline-block;
+}
+.tooltip {
+  @apply invisible bg-[black] text-white text-center absolute -translate-x-2/4 z-[1] whitespace-nowrap px-2.5 py-[5px] rounded-md left-2/4 bottom-[110%] after:content-[""] after:absolute after:ml-[-5px] after:border-[5px] after:border-solid after:border-[black_transparent_transparent_transparent] after:left-2/4 after:top-full;
+}
+
+/* Afficher l'infobulle lors du survol */
+.svg-container:hover .tooltip {
+  @apply visible;
+}
+
+/* Section Skills */
+#skills,
+#education,
+#contact {
+  @apply flex flex-col items-center text-center px-5 py-[60px];
+}
+
+#skills ul,
+#education div,
+#contact form {
+  @apply max-w-[800px];
+}
+.skills-grid {
+  @apply grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-5;
+}
+.skill-category h3 {
+  @apply font-bold text-[1.8em] border-b-[color:var(--color-gray)] mb-5 mt-10 pb-2.5 border-b-2 border-solid;
+}
+.skill {
+  @apply flex flex-col items-center bg-[color:var(--color-background-gray)] shadow-[0_4px_8px_var(--color-shadow)] p-5 rounded-[10px] text-center;
+}
+
+.skill img {
+  @apply w-[60px] h-[60px] object-contain mb-4;
+}
+
+.skill h4 {
+  @apply font-bold text-[1.2em] mb-2.5 leading-tight;
+}
+
+.skill p {
+  @apply text-[0.9em] text-[color:var(--color-gray-dark)];
+}
+#contact-me,
+#cv {
+  @apply font-bold text-white mb-5;
+}
+
+/* Section Education */
+#education {
+  @apply flex flex-col items-center text-white text-left px-5 py-[60px];
+}
+#education h2 {
+  @apply text-[2.5em] text-center mb-10;
+}
+
+/* Conteneur pour organiser les items en grille */
+#education .education-container {
+  @apply grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-5 max-w-[800px] w-full;
+}
+.education-item {
+  @apply flex flex-col justify-center items-start bg-[color:var(--color-light)] shadow-[0_4px_8px_var(--color-shadow)] h-[200px] p-5 rounded-[10px];
+}
+.education-item h3 {
+  @apply font-bold text-[1.5em] text-[color:var(--color-dark)] mb-[5px];
+}
+.education-degree {
+  @apply font-bold text-[color:var(--color-gray-dark)] mb-2.5;
+}
+.education-dates {
+  @apply text-[0.9em] text-[color:var(--color-primary)];
+}
+
+/* Section */
+#cv img {
+  @apply w-[300px] h-auto border mb-[15px] rounded-[5px] border-solid border-[#ddd];
+}
+#cv a {
+  @apply inline-block bg-[color:var(--color-dark)] text-[white] no-underline px-5 py-2.5 rounded-[5px] hover:bg-[color:var(--color-primary)];
+  border: 2px solid white; /* Ajoute une bordure blanche de 2px */
+}
+
+/* Section Contact */
+section {
+  @apply flex flex-col items-center text-center px-5 py-[60px];
+}
+section h2 {
+  @apply font-bold text-[2em] mb-10 border-b-2 border-solid;
+}
+section p {
+  @apply max-w-[800px] leading-[1.8];
+}
+section img {
+  @apply max-w-full h-auto block mx-auto;
+}
+
+/* Form Styles */
+/* Global styles for forms */
+form {
+  @apply max-w-[500px] shadow-[0_0_10px_var(--color-shadow)] mx-auto my-0 p-5 rounded-[10px];
+  background: var(--color-light);
+}
+form label {
+  @apply block mt-2.5 mb-[5px] mx-0;
+}
+form input {
+  @apply w-full border border-[color:var(--color-gray)] resize-none p-2.5 rounded-[5px] border-solid;
+}
+form textarea {
+  @apply w-full border border-[color:var(--color-gray)] resize-none min-h-[150px] min-w-[250px] overflow-y-hidden mb-5 p-2.5 rounded-[5px] border-solid;
+}
+form button {
+  @apply bg-[color:var(--color-dark)] text-[color:var(--color-light)] cursor-pointer px-5 py-2.5 rounded-[5px] border-[none] hover:bg-[color:var(--color-primary)];
+}
+
+/* Specific style for the contact form if needed */
+.contact-form {
+  @apply max-w-[500px];
+}
+
+/* Footer Social Links */
+.social-links {
+  @apply text-center mt-5;
+}
+.social-links a {
+  @apply text-[color:var(--color-dark)] no-underline text-[1.2em] mx-2.5 my-0;
+}
+
+/* Bouton de retour en haut */
+#scrollToTopBtn {
+  @apply fixed w-[50px] h-[50px] bg-[color:var(--color-dark)] text-[color:var(--color-light)] cursor-pointer text-xl hidden justify-center items-center text-center shadow-[0_2px_5px_var(--color-shadow-dark)] transition-opacity duration-[0.3s] z-[3] rounded-[50%] border-[none] right-5 bottom-5 hover:bg-[color:var(--color-primary)];
+  border: 2px solid white; /* Ajoute une bordure blanche de 2px */
+}

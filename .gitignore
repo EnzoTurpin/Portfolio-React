@@ -1,0 +1,59 @@
+# Node modules
+node_modules/
+
+# Build outputs
+build/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Dependency directories
+.bower_components/
+jspm_packages/
+
+# Testing-related files
+coverage/
+*.lcov
+
+# Miscellaneous
+*.lock
+*.log
+*.bak
+
+# Parcel-bundler
+.cache/
+
+# Next.js
+.next/
+
+
+# Storybook
+out/
+storybook-static/
+
+# TypeScript
+*.tsbuildinfo
+
+# Other settings files (if applicable)
+eslintcache
+stylelintcache

@@ -1,0 +1,15 @@
+Paramétrage:
+
+WAN-DHCP
+
+Lan Statique: 10.x.0.1/24
+
+Lan2 DHCP: 172.16.X.1/24
+
+Lan1 accès au Lan2, mais Lan2 pas accès au Lan1
+________________
+
+Faire un réseau avec 2 Lan
+
+Mettre en place un pare-feu avec 2 réseaux, 3 interface, 2 publiques et 1 privées
+
