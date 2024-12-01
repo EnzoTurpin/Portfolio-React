@@ -30,6 +30,7 @@ import githubSVG from "/svg/github.svg";
 import linkedinSVG from "/svg/linkedin.svg";
 
 function Home() {
+  // États pour gérer les entrées utilisateur et la langue sélectionnée
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -39,7 +40,7 @@ function Home() {
   const [notificationMessages, setNotificationMessages] = useState(null);
   const toastRef = useRef(null);
 
-  // Charger les traductions pour les notifications
+  // États pour gérer les entrées utilisateur et la langue sélectionnée
   useEffect(() => {
     fetch("/translations/translations.json")
       .then((res) => {
@@ -65,13 +66,13 @@ function Home() {
       });
   }, [selectedLanguage]);
 
-  // Gestion du changement de langue
+  // Gestion du changement de langue et sauvegarde dans le localStorage
   const handleLanguageChange = (lang) => {
     setSelectedLanguage(lang);
     localStorage.setItem("language", lang);
   };
 
-  // Gestion de l'envoi du formulaire
+  // Gestion de l'envoi du formulaire avec affichage des notifications
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -88,8 +89,8 @@ function Home() {
     toastRef.current.show({
       title: notificationMessages.waiting.title,
       content: notificationMessages.waiting.content,
-      cssClass: "e-toast-warning",
-      icon: "e-warning toast-icons",
+      cssClass: "e-toast-info",
+      icon: "e-info toast-icons",
     });
 
     try {
@@ -117,13 +118,14 @@ function Home() {
         title: notificationMessages.error.title,
         content: notificationMessages.error.content,
         cssClass: "e-toast-danger",
-        icon: "e-error toast-icons",
+        icon: "e-warning toast-icons",
       });
     }
   };
 
   return (
     <>
+      {/* Configuration des métadonnées et du titre de la page */}
       <Helmet>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -140,7 +142,8 @@ function Home() {
           rel="stylesheet"
         />
       </Helmet>
-      {/* En-tête */}
+
+      {/* En-tête comprenant le menu, le logo, et une présentation */}
       <div
         className="font-sans leading-[1.6] box-border text-[color:var(--color-dark)] m-0 p-0"
         style={{ background: "linear-gradient(to bottom, #ffffff, #333)" }}
@@ -149,7 +152,6 @@ function Home() {
           <Menu changeLanguage={handleLanguageChange} />
 
           <div className="flex flex-col md:flex-col lg:flex-row items-center text-center md:text-center lg:text-left max-w-[1000px] w-full mx-auto my-0">
-            {/* Conteneur de la photo */}
             <div className="flex justify-center mb-5 lg:mb-0">
               <img
                 src={icon}
@@ -157,8 +159,6 @@ function Home() {
                 className="w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] md:w-[120px] md:h-[120px] lg:mr-5 border-[color:var(--color-light)] bg-[color:var(--color-dark)] rounded-full border-[3px] border-solid object-cover"
               />
             </div>
-
-            {/* Conteneur du texte */}
             <div className="flex flex-col items-center lg:items-start">
               <h1
                 className="font-bold text-[1.8em] md:text-[2em] m-0"
@@ -189,8 +189,7 @@ function Home() {
           </div>
         </header>
 
-        {/* Section À propos */}
-
+        {/* Sections À propos, Projets, Compétences, Éducation et Contact */}
         <section
           id="about"
           className="flex flex-col items-center text-center px-5 py-[60px]"
@@ -210,7 +209,7 @@ function Home() {
           </p>
         </section>
 
-        {/* Section Projets */}
+        {/* Section Projets : Liste des projets réalisés avec détails et liens */}
         <section
           id="projects"
           className="flex flex-col items-center text-center px-5 py-[60px]"
@@ -234,26 +233,45 @@ function Home() {
                   EasterQuiz
                 </h3>
                 <div className="flex gap-[5px] mt-[5px]">
-                  <div className="relative inline-block">
+                  <div className="relative group">
                     <img
                       src={htmlSVG}
                       className="w-6 h-6 align-middle"
                       alt="Logo HTML"
                     />
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:inline-block bg-black text-white text-sm font-medium py-1 px-2 rounded shadow-lg">
+                      HTML
+                    </span>
                   </div>
-                  <div className="relative inline-block">
+                  <div className="relative group">
                     <img
                       src={cssSVG}
                       className="w-6 h-6 align-middle"
                       alt="Logo CSS"
                     />
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:inline-block bg-black text-white text-sm font-medium py-1 px-2 rounded shadow-lg">
+                      CSS
+                    </span>
                   </div>
-                  <div className="relative inline-block">
+                  <div className="relative group">
                     <img
                       src={javascriptSVG}
                       className="w-6 h-6 align-middle"
                       alt="Logo JavaScript"
                     />
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:inline-block bg-black text-white text-sm font-medium py-1 px-2 rounded shadow-lg">
+                      JavaScript
+                    </span>
+                  </div>
+                  <div className="relative group">
+                    <img
+                      src={golangSVG}
+                      className="w-6 h-6 align-middle"
+                      alt="Logo Golang"
+                    />
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:inline-block bg-black text-white text-sm font-medium py-1 px-2 rounded shadow-lg">
+                      Golang
+                    </span>
                   </div>
                 </div>
                 <p
@@ -295,33 +313,55 @@ function Home() {
                   Forum
                 </h3>
                 <div className="flex gap-[5px] mt-[5px]">
-                  <div className="relative inline-block">
+                  <div className="relative group">
                     <img
                       src={htmlSVG}
                       className="w-6 h-6 align-middle"
                       alt="Logo HTML"
                     />
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:inline-block bg-black text-white text-sm font-medium py-1 px-2 rounded shadow-lg">
+                      HTML
+                    </span>
                   </div>
-                  <div className="relative inline-block">
+                  <div className="relative group">
                     <img
                       src={cssSVG}
                       className="w-6 h-6 align-middle"
                       alt="Logo CSS"
                     />
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:inline-block bg-black text-white text-sm font-medium py-1 px-2 rounded shadow-lg">
+                      CSS
+                    </span>
                   </div>
-                  <div className="relative inline-block">
+                  <div className="relative group">
                     <img
                       src={javascriptSVG}
                       className="w-6 h-6 align-middle"
                       alt="Logo JavaScript"
                     />
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:inline-block bg-black text-white text-sm font-medium py-1 px-2 rounded shadow-lg">
+                      JavaScript
+                    </span>
                   </div>
-                  <div className="relative inline-block">
+                  <div className="relative group">
+                    <img
+                      src={golangSVG}
+                      className="w-6 h-6 align-middle"
+                      alt="Logo Golang"
+                    />
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:inline-block bg-black text-white text-sm font-medium py-1 px-2 rounded shadow-lg">
+                      Golang
+                    </span>
+                  </div>
+                  <div className="relative group">
                     <img
                       src={mysqlSVG}
                       className="w-6 h-6 align-middle"
                       alt="Logo MySQL"
                     />
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:inline-block bg-black text-white text-sm font-medium py-1 px-2 rounded shadow-lg">
+                      MySQL
+                    </span>
                   </div>
                 </div>
                 <p
@@ -333,7 +373,7 @@ function Home() {
                 </p>
                 <div className="flex flex-wrap justify-start mt-2 space-x-2 sm:space-x-0 sm:space-y-2">
                   <a
-                    href="https://github.com/EnzoTurpin/EasterQuiz"
+                    href="https://github.com/EnzoTurpin/Forum"
                     className="inline-block bg-[color:var(--color-dark)] text-[color:var(--color-light)] no-underline text-[1em] transition-[background-color] duration-[0.3s] ease-[ease] mr-2.5 mt-auto px-5 py-2.5 rounded-[5px]"
                     data-key="projects.buttons.github"
                     target="_blank"
@@ -341,7 +381,7 @@ function Home() {
                     Voir sur GitHub
                   </a>
                   <a
-                    href="https://easterquiz.enzo-turpin.fr"
+                    href="https://forum.enzo-turpin.fr"
                     className="inline-block bg-[color:var(--color-dark)] text-[color:var(--color-light)] no-underline text-[1em] transition-[background-color] duration-[0.3s] ease-[ease] mr-2.5 mt-auto px-5 py-2.5 rounded-[5px]"
                     data-key="projects.buttons.view"
                     target="_blank"
@@ -364,33 +404,45 @@ function Home() {
                   GroupieTracker
                 </h3>
                 <div className="flex gap-[5px] mt-[5px]">
-                  <div className="relative inline-block">
+                  <div className="relative group">
                     <img
                       src={htmlSVG}
                       className="w-6 h-6 align-middle"
                       alt="Logo HTML"
                     />
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:inline-block bg-black text-white text-sm font-medium py-1 px-2 rounded shadow-lg">
+                      HTML
+                    </span>
                   </div>
-                  <div className="relative inline-block">
+                  <div className="relative group">
                     <img
                       src={cssSVG}
                       className="w-6 h-6 align-middle"
                       alt="Logo CSS"
                     />
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:inline-block bg-black text-white text-sm font-medium py-1 px-2 rounded shadow-lg">
+                      CSS
+                    </span>
                   </div>
-                  <div className="relative inline-block">
+                  <div className="relative group">
                     <img
                       src={javascriptSVG}
                       className="w-6 h-6 align-middle"
                       alt="Logo JavaScript"
                     />
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:inline-block bg-black text-white text-sm font-medium py-1 px-2 rounded shadow-lg">
+                      JavaScript
+                    </span>
                   </div>
-                  <div className="relative inline-block">
+                  <div className="relative group">
                     <img
                       src={golangSVG}
                       className="w-6 h-6 align-middle"
                       alt="Logo Golang"
                     />
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:inline-block bg-black text-white text-sm font-medium py-1 px-2 rounded shadow-lg">
+                      Golang
+                    </span>
                   </div>
                 </div>
                 <p
@@ -402,7 +454,7 @@ function Home() {
                 </p>
                 <div className="flex flex-wrap justify-start mt-2 space-x-2 sm:space-x-0 sm:space-y-2">
                   <a
-                    href="https://github.com/EnzoTurpin/EasterQuiz"
+                    href="https://github.com/EnzoTurpin/GroupieTracker"
                     className="inline-block bg-[color:var(--color-dark)] text-[color:var(--color-light)] no-underline text-[1em] transition-[background-color] duration-[0.3s] ease-[ease] mr-2.5 mt-auto px-5 py-2.5 rounded-[5px]"
                     data-key="projects.buttons.github"
                     target="_blank"
@@ -410,7 +462,7 @@ function Home() {
                     Voir sur GitHub
                   </a>
                   <a
-                    href="https://easterquiz.enzo-turpin.fr"
+                    href="https://groupietracker.enzo-turpin.fr"
                     className="inline-block bg-[color:var(--color-dark)] text-[color:var(--color-light)] no-underline text-[1em] transition-[background-color] duration-[0.3s] ease-[ease] mr-2.5 mt-auto px-5 py-2.5 rounded-[5px]"
                     data-key="projects.buttons.view"
                     target="_blank"
@@ -423,11 +475,12 @@ function Home() {
           </div>
         </section>
 
-        {/* Section Compétences */}
+        {/* Section Compétences : Compétences techniques organisées par catégories */}
         <section
           id="skills"
           className="flex flex-col items-center text-center px-5 py-[60px]"
         >
+          {/* Compétences Frameworks */}
           <div>
             <h3
               className="font-bold text-[1.8em] border-b-[color:var(--color-gray)] mb-5 mt-10 pb-2.5 border-b-2 border-solid"
@@ -478,6 +531,7 @@ function Home() {
               </div>
             </div>
           </div>
+
           {/* Compétences Back-end */}
           <div>
             <h3
@@ -566,6 +620,7 @@ function Home() {
               </div>
             </div>
           </div>
+
           {/* Compétences Bases de données */}
           <div>
             <h3
@@ -597,7 +652,8 @@ function Home() {
             </div>
           </div>
         </section>
-        {/* Section Éducation */}
+
+        {/* Section Éducation : Parcours académique avec les diplômes obtenus */}
         <section
           id="education"
           className="flex flex-col items-center text-center px-5 py-[60px]"
@@ -608,7 +664,8 @@ function Home() {
           >
             Éducation
           </h2>
-          {/* Nouveau conteneur pour la grille */}
+
+          {/* École supérieures */}
           <div className="grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-5 max-w-[800px] w-full">
             <div className="flex flex-col justify-center items-start bg-[color:var(--color-light)] shadow-[0_4px_8px_var(--color-shadow)] h-[200px] p-5 rounded-[10px]">
               <h3
@@ -671,6 +728,8 @@ function Home() {
                 2022 - 2022
               </p>
             </div>
+
+            {/* Lycée */}
             <div className="flex flex-col justify-center items-start bg-[color:var(--color-light)] shadow-[0_4px_8px_var(--color-shadow)] h-[200px] p-5 rounded-[10px]">
               <h3
                 className="font-bold text-[1.5em] text-[color:var(--color-dark)] mb-[5px]"
@@ -694,13 +753,13 @@ function Home() {
             </div>
           </div>
         </section>
-        {/* Section Contact */}
+        {/* Section Contact : Formulaire de contact et lien pour télécharger le CV */}
         <section
           id="contact"
           className="flex flex-col items-center text-center px-5 py-[60px]"
         >
           <div className="flex flex-col md:flex-row justify-between items-center md:items-start mt-10 w-full max-w-[1200px] gap-12 mx-auto">
-            {/* CV Section */}
+            {/* CV */}
             <div
               id="cv"
               className="flex flex-col items-center md:items-center justify-center min-h-[500px] w-full md:w-1/2"
@@ -830,10 +889,11 @@ function Home() {
             </div>
           </div>
         </section>
-        {/* Notifications */}
+
+        {/* Composant Notifications pour afficher les messages */}
         <Notifications ref={toastRef} />
 
-        {/* Scroll to Top Button */}
+        {/* Bouton pour remonter en haut de la page */}
         <ScrollToTopButton />
       </div>
     </>
