@@ -45,7 +45,26 @@ const ScrollToTopButton = () => {
       ref={scrollToTopBtn}
       id="scrollToTopBtn"
       aria-label="Retour en haut"
-      style={{ display: "none" }} // Initialement caché
+      style={{
+        display: "none",
+        position: "fixed",
+        width: "50px",
+        height: "50px",
+        backgroundColor: "var(--color-dark)",
+        color: "var(--color-light)",
+        cursor: "pointer",
+        fontSize: "1.25rem",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        boxShadow: "0 2px 5px var(--color-shadow-dark)",
+        transition: "opacity 0.3s",
+        zIndex: 3,
+        borderRadius: "50%",
+        border: "2px solid white",
+        right: "20px",
+        bottom: "20px",
+      }}
     >
       <svg
         width={24}

@@ -5,6 +5,19 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply font-sans;
+:root {
+  --color-dark: #333;
+  --color-light: #fff;
+  --color-gray-light: #f0f0f0;
+  --color-gray-lighter: #b0b0b0;
+  --color-gray: #ddd;
+  --color-gray-dark: #666;
+  --color-background-light: #f8f8f8;
+  --color-background-gray: #f4f4f4;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-shadow-dark: rgba(0, 0, 0, 0.3);
+  --color-primary: #555;
+}
+* {
+  @apply box-border p-0;
 }
