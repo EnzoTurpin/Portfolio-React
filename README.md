@@ -25,46 +25,46 @@ Ceci est mon portfolio personnel construit avec **React** et **TailwindCSS**. Il
 
 ### Étapes
 
-1. Clonez le dépôt :
+1.  Clonez le dépôt :
 
-   ```bash
-   git clone https://github.com/EnzoTurpin/portfolio-react.git
-   cd portfolio_mail
-   ```
+    ```bash
+    git clone https://github.com/EnzoTurpin/portfolio-react.git
+    cd portfolio_mail
+    ```
 
-2. Installez les dépendances :
+2.  Installez les dépendances à la racine du projet :
 
-   ```bash
-   npm install
-   ```
+    ```bash
+    npm install
+    ```
 
-3. Configurez les variables d'environnement :
+3.  Configurez les variables d'environnement :
 
-   Créez un fichier `.env` à la racine du dossier `portfolio_mail` et ajoutez les configurations nécessaires.
+    Créez un fichier `.env` à la racine du dossier `portfolio_mail` et ajoutez les configurations nécessaires.
 
-4. Lancez le serveur de développement :
+4.  Lancez le serveur de développement :
 
-   ```bash
-   npm run dev
-   ```
+    ```bash
+    npm run dev
+    ```
 
-   Le portfolio sera disponible à l'adresse `http://localhost:5173`.
+    Le portfolio sera disponible à l'adresse `http://localhost:5173`.
 
-5. (Optionnel) Construisez pour la production :
+5.  **Configurez le serveur d'envoi de mails** :
 
-   ```bash
-   npm run build
-   ```
+    Ouvrez un **nouveau terminal**, placez-vous dans le dossier `portfolio_mail`, et installer les dépendances node ainsi que le serveur d'e-mails :
 
-6. **Configurez le serveur d'envoi de mails** :
+        ```bash
+        npm install
+        ```
 
-   Ouvrez un **nouveau terminal**, placez-vous dans le dossier `portfolio_mail`, et lancez le serveur d'e-mails :
+    et
 
-   ```bash
-   node server.js
-   ```
+        ```bash
+        node server.js
+        ```
 
-   Cela permettra au formulaire de contact d'envoyer des messages en utilisant la logique serveur définie dans `server.js`.
+Cela permettra au formulaire de contact d'envoyer des messages en utilisant la logique serveur définie dans `server.js`.
 
 ---
 
